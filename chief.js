@@ -1,15 +1,20 @@
-var chief = (function () {
-  var _count = 1;
+(function () {
+  var T = function (selector) {
 
-  function a() {
-    console.log(_count);
-  }
+    // 获取DOM元素
+    var dom = document.querySelector(selector);
 
-  function b() {
-  }
+    // 添加类
+    dom.addClass = function (className) {
+      this.classList.add(className);
+    };
 
-  return ({
-    a: a,
-    b: b
-  });
-})();
+    // 删除类
+    dom.removeClass = function (className) {
+      this.classList.remove(className)
+    };
+    return dom;
+  };
+
+  window.T = T;
+})(window);
