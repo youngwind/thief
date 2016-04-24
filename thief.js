@@ -6,15 +6,28 @@
   }
 
   T.prototype = {
+    splice: [].splice,
+    length: 0,
     init: function (selector) {
-      this.dom = document.querySelector(selector);
+      var ele = document.querySelectorAll(selector);
+      for (var i = 0; i < ele.length; i++) {
+        this[i] = ele[i];
+      }
+      this.length = ele.length;
       return this;
     },
     addClass: function (className) {
-      this.dom.classList.add(className);
+      for (var i = 0; i < this.length; i++) {
+        this[i].classList.add(className);
+      }
+      return this;
+
     },
     removeClass: function (className) {
-      this.dom.classList.remove(className);
+      for (var i = 0; i < this.length; i++) {
+        this[i].classList.remove(className);
+      }
+      return this;
     }
   };
 
